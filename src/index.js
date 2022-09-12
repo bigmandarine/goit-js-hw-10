@@ -10,11 +10,13 @@ const refs = {
 };
 
 function inputSearchCountry() {
+  if (refs.input.value === '') {
+    refs.countryList.innerHTML = '';
+    refs.oneCountryInfo.innerHTML = '';
+  }
   const trimInputValue = refs.input.value.trim();
   fetchCountries(refs.input.value)
     .then(countries => {
-      refs.countryList.innerHTML = '';
-      refs.oneCountryInfo.innerHTML = '';
       if (trimInputValue !== '') {
         if (countries.length > 10) {
           return Notiflix.Notify.info(
